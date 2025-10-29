@@ -3,10 +3,11 @@
 #include "hittable_list.h"
 #include "rtweekend.h"
 #include "sphere.h"
+#include "utils.h"
 
 color ray_color(ray const& r, hittable_list const& world) {
 	hit_record rec;
-	if(world.hit(r, 0, infinity, rec)){
+	if(world.hit(r, interval(0, infinity), rec)){
 		return 0.5 * (rec.normal + color(1, 1, 1));
 	}
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ray.h"
+#include "interval.h"
 
 struct hit_record{
     point3 point;
@@ -21,5 +22,5 @@ class hittable{
     public:
         virtual ~hittable() = default;
 
-        virtual bool hit(ray const& r, double ray_tmin, double ray_tmax, hit_record& rec) const = 0;
+        virtual bool hit(ray const& r, interval ray_t, hit_record& rec) const = 0;
 };
