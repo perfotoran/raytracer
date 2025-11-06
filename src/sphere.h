@@ -2,11 +2,13 @@
 
 #include "hittable.h"
 #include "vec3.h"
+#include "material.h"
 
 class sphere : public hittable {
 private:
 	point3 center;
 	double radius;
+	std::shared_ptr<material> mat;
 
 public:
 	sphere(point3 const& center, double radius) : center(center), radius(std::fmax(0, radius)) {}
@@ -35,6 +37,7 @@ public:
 		rec.point = r.at(rec.t);
 		vec3 outward_normal = (rec.point - center) / radius;
         rec.set_face_normal(r, outward_normal);
+		rec.mat = mat;
 
 		return true;
 	}
